@@ -18,7 +18,20 @@ app.use("/customer", session({
 }));
 
 app.use("/customer/auth/*", function auth(req, res, next) {
-    //Write the authenication mechanism here
+    if(!req.session.authorization) {
+        return res.status(401).send({message: "User not logged in"});
+    }
+
+    let token = req.session.authorization["accessToken"];
+
+    // Verify JWT token
+    jwt.verify(token, process.env.AUTH_SECRET, (err, user) => {
+        if(err) {
+            return res.status(403).send({message: "Invalid token"});
+        }
+        req.user = user;
+        next();
+    });
 });
 
 const PORT = 5000;
