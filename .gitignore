@@ -1,4 +1,29 @@
 # Distribution / packaging
 node_modules
 
+# IDE files
+.vscode/
+.idea/
 
+# Build output
+dist/
+
+# Logs
+logs/
+
+# Environment variables
+.env
+
+# Dependency lock files
+package-lock.json
+yarn.lock
+
+# Testing artifacts
+coverage/
+
+# Compiled files
+*.js
+*.map
+
+# Miscellaneous
+.DS_Store
