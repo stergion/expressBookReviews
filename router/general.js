@@ -28,10 +28,10 @@ public_users.get('/isbn/:isbn', function (req, res) {
   
 // Get book details based on author
 public_users.get('/author/:author', function (req, res) {
-    let books_found = [];
+    let books_found = {};
     for (let isbn in books) {
         if (books[isbn].author === req.params.author) {
-            books_found.push(books[isbn]);
+            books_found[isbn] = books[isbn];
         }
     }
 
