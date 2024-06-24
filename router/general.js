@@ -13,11 +13,11 @@ public_users.post("/register", (req, res) => {
         return res.status(400).json({ message: "Username or password is missing." });
     }
 
-    if(users[username]) {
+    if (isValid(username)) {
         return res.status(400).json({ message: "User already exists." });
     }
 
-    users[username] = password;
+    users.push({"username": username, "password": password});
     return res.status(201).json({ message: `User ${username} was created successfully.` });
 });
 
